@@ -13,6 +13,14 @@ This repository contains hands-on labs for the Azure Cloud Networking course. Co
   - [Lab5.md](Day1/Lab5/Lab5.md) – Configure RBAC for Network Resources  
   - [Lab6.md](Day1/Lab6/Lab6.md) – Deploying Azure Firewall  
 
+  # Hands-on labs for Day 2 Module 2:
+  - [Lab7.md](Day2/Lab7/Lab7.md) – Creating a Public DNS Zone and Records in Azure DNS  
+  - [Lab8.md](Day2/Lab8/Lab8.md) – Setting Up a Private DNS Zone in Azure  
+  - [Lab9.md](Day2/Lab9/Lab9.md) – Configuring Azure Traffic Manager for Performance Routing  
+  - [Lab10.md](Day2/Lab10/Lab10.md) – Implementing Azure CDN for Content Caching  
+  - [Lab11.md](Day2/Lab11/Lab11.md) – Deploying VMs with Availability Zones for Resilience  
+  - [Lab12.md](Day2/Lab12/Lab12.md) – Automating Network Deployment with Terraform  
+
 ## Prerequisites
 
 - An active Azure subscription  

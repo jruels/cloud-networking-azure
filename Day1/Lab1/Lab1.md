@@ -36,7 +36,7 @@ In this exercise you will create and configure a Virtual Network in Azure, segme
 
 * **Portal URL:** [https://portal.azure.com](https://portal.azure.com)
 * **Region:** East US (or your nearest region)
-* **Resource Group:** `rg-vnet-lab` (create in this lab)
+* **Resource Group:** `rg-yourname-vnet-lab` (create in this lab)
 
 ---
 
@@ -45,7 +45,7 @@ In this exercise you will create and configure a Virtual Network in Azure, segme
 ### 1. **Create Resource Group**
 
 1. In the Azure Portal menu, click **Resource groups**.![alt text](image.png)
-2. Click **+ Create**, choose your subscription, enter **rg-vnet-lab**, select **East US**, then **Review + create → Create**.
+2. Click **+ Create**, choose your subscription, enter **rg-yourname-vnet-lab**, select **East US**, then **Review + create → Create**. Replace `yourname` with your name without spaces.
 
 > **Why?** Isolating labs in their own RG helps manage, tag, and clean up resources easily.
 
@@ -61,7 +61,7 @@ In this exercise you will create and configure a Virtual Network in Azure, segme
 ### 3. **Basics Configuration**
 
 1. **Subscription:** Your subscription.
-2. **Resource group:** Select **rg‑vnet‑lab**.
+2. **Resource group:** Select **rg‑yourname-vnet‑lab**.
 3. **Name:** `vnet-lab`.
 4. **Region:** East US.
 5. Navigate to the IP addresses tab:

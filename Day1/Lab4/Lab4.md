@@ -24,15 +24,17 @@ In this lab, you will:
 
 ### Step 2: Create a Resource Group
 
+Replace `yourname` with your name without spaces.
+
 ```bash
-az group create --name rg-nat-lab --location westus
+az group create --name rg-yourname-nat-lab --location westus
 ```
 
 ### Step 3: Create a VNet and Subnet
 
 ```bash
 az network vnet create \
-  --resource-group rg-nat-lab \
+  --resource-group rg-yourname-nat-lab \
   --name vnet-nat-lab \
   --address-prefix 10.20.0.0/16 \
   --subnet-name subnet-nat \
@@ -47,7 +49,7 @@ az network vnet create \
 
 ```bash
 az network public-ip create \
-  --resource-group rg-nat-lab \
+  --resource-group rg-yourname-nat-lab \
   --name nat-public-ip \
   --sku Standard \
   --allocation-method Static
@@ -57,7 +59,7 @@ az network public-ip create \
 
 ```bash
 az network nat gateway create \
-  --resource-group rg-nat-lab \
+  --resource-group rg-yourname-nat-lab \
   --name nat-gateway-demo \
   --public-ip-addresses nat-public-ip \
   --idle-timeout 10 \
@@ -70,7 +72,7 @@ az network nat gateway create \
 
 ```bash
 az network vnet subnet update \
-  --resource-group rg-nat-lab \
+  --resource-group rg-yourname-nat-lab \
   --vnet-name vnet-nat-lab \
   --name subnet-nat \
   --nat-gateway nat-gateway-demo
@@ -84,7 +86,7 @@ az network vnet subnet update \
 
 ```bash
 az vm create \
-  --resource-group rg-nat-lab \
+  --resource-group rg-yourname-nat-lab \
   --name vm-nat-test \
   --vnet-name vnet-nat-lab \
   --subnet subnet-nat \
@@ -107,7 +109,7 @@ SSH key files '/home/user/.ssh/id_rsa' and '/home/user/.ssh/id_rsa.pub' have bee
 
 ```bash
 az vm show \
-  --resource-group rg-nat-lab \
+  --resource-group rg-yourname-nat-lab \
   --name vm-nat-test \
   --show-details \
   --query publicIps -o tsv
@@ -136,7 +138,7 @@ curl ifconfig.me
 Type `exit` to close the VM session
  Then run the following command:
 ```bash
-az group delete --name rg-nat-lab --yes --no-wait
+az group delete --name rg-yourname-nat-lab --yes --no-wait
 ```
 
 ---

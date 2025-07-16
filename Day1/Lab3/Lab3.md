@@ -24,22 +24,24 @@ In this hands-on lab, you will:
 
 ### Step 2: Create a Resource Group
 
+Replace `yourname` with your name without spaces.
+
 ```bash
-az group create --name rg-udr-lab --location westus
+az group create --name rg-yourname-udr-lab --location westus
 ```
 
 ### Step 3: Create a Virtual Network with Two Subnets
 
 ```bash
 az network vnet create \
-  --resource-group rg-udr-lab \
+  --resource-group rg-yourname-udr-lab \
   --name vnet-lab \
   --address-prefix 10.10.0.0/16 \
   --subnet-name subnet-frontend \
   --subnet-prefix 10.10.1.0/24
 
 az network vnet subnet create \
-  --resource-group rg-udr-lab \
+  --resource-group rg-yourname-udr-lab \
   --vnet-name vnet-lab \
   --name subnet-firewall \
   --address-prefix 10.10.3.0/24
@@ -51,7 +53,7 @@ az network vnet subnet create \
 
 ```bash
 az vm create \
-  --resource-group rg-udr-lab \
+  --resource-group rg-yourname-udr-lab \
   --name vm-firewall \
   --image Ubuntu2204 \
   --vnet-name vnet-lab \
@@ -65,7 +67,7 @@ az vm create \
 
 ```bash
 az vm create \
-  --resource-group rg-udr-lab \
+  --resource-group rg-yourname-udr-lab \
   --name vm-test-1 \
   --image Ubuntu2204 \
   --vnet-name vnet-lab \
@@ -82,8 +84,8 @@ az vm create \
 ### Step 5: Create NSGs
 
 ```bash
-az network nsg create --resource-group rg-udr-lab --name nsg-firewall --location westus
-az network nsg create --resource-group rg-udr-lab --name nsg-test-1 --location westus
+az network nsg create --resource-group rg-yourname-udr-lab --name nsg-firewall --location westus
+az network nsg create --resource-group rg-yourname-udr-lab --name nsg-test-1 --location westus
 ```
 
 ### Step 6: Attach NSGs to NICs
@@ -91,32 +93,32 @@ az network nsg create --resource-group rg-udr-lab --name nsg-test-1 --location w
 ```bash
 az network nic update \
   --name vm-firewallVMNic \
-  --resource-group rg-udr-lab \
+  --resource-group rg-yourname-udr-lab \
   --network-security-group nsg-firewall
 
 az network nic update \
   --name vm-test-1VMNic \
-  --resource-group rg-udr-lab \
+  --resource-group rg-yourname-udr-lab \
   --network-security-group nsg-test-1
 ```
 
 > If you're unsure of the NIC names, run:
 
 ```bash
-az network nic list --resource-group rg-udr-lab --query "[].{Name:name}" -o table
+az network nic list --resource-group rg-yourname-udr-lab --query "[].{Name:name}" -o table
 ```
 
 ### Step 7: Add Inbound Rules
 
 ```bash
 # For vm-firewall
-az network nsg rule create --resource-group rg-udr-lab --nsg-name nsg-firewall --name Allow-SSH --priority 1000 --direction Inbound --access Allow --protocol Tcp --destination-port-range 22 --source-address-prefix '*' --destination-address-prefix '*'
-az network nsg rule create --resource-group rg-udr-lab --nsg-name nsg-firewall --name Allow-HTTP --priority 1001 --direction Inbound --access Allow --protocol Tcp --destination-port-range 80 --source-address-prefix '*' --destination-address-prefix '*'
-az network nsg rule create --resource-group rg-udr-lab --nsg-name nsg-firewall --name Allow-ICMP --priority 1002 --direction Inbound --access Allow --protocol Icmp --destination-port-range '*' --source-address-prefix '*' --destination-address-prefix '*'
+az network nsg rule create --resource-group rg-yourname-udr-lab --nsg-name nsg-firewall --name Allow-SSH --priority 1000 --direction Inbound --access Allow --protocol Tcp --destination-port-range 22 --source-address-prefix '*' --destination-address-prefix '*'
+az network nsg rule create --resource-group rg-yourname-udr-lab --nsg-name nsg-firewall --name Allow-HTTP --priority 1001 --direction Inbound --access Allow --protocol Tcp --destination-port-range 80 --source-address-prefix '*' --destination-address-prefix '*'
+az network nsg rule create --resource-group rg-yourname-udr-lab --nsg-name nsg-firewall --name Allow-ICMP --priority 1002 --direction Inbound --access Allow --protocol Icmp --destination-port-range '*' --source-address-prefix '*' --destination-address-prefix '*'
 
 # For vm-test-1
-az network nsg rule create --resource-group rg-udr-lab --nsg-name nsg-test-1 --name Allow-SSH --priority 1000 --direction Inbound --access Allow --protocol Tcp --destination-port-range 22 --source-address-prefix '*' --destination-address-prefix '*'
-az network nsg rule create --resource-group rg-udr-lab --nsg-name nsg-test-1 --name Allow-ICMP --priority 1001 --direction Inbound --access Allow --protocol Icmp --destination-port-range '*' --source-address-prefix '*' --destination-address-prefix '*'
+az network nsg rule create --resource-group rg-yourname-udr-lab --nsg-name nsg-test-1 --name Allow-SSH --priority 1000 --direction Inbound --access Allow --protocol Tcp --destination-port-range 22 --source-address-prefix '*' --destination-address-prefix '*'
+az network nsg rule create --resource-group rg-yourname-udr-lab --nsg-name nsg-test-1 --name Allow-ICMP --priority 1001 --direction Inbound --access Allow --protocol Icmp --destination-port-range '*' --source-address-prefix '*' --destination-address-prefix '*'
 ```
 
 ---
@@ -126,7 +128,7 @@ az network nsg rule create --resource-group rg-udr-lab --nsg-name nsg-test-1 --n
 ### Step 8: Get Private IP of vm-firewall
 
 ```bash
-az vm list-ip-addresses --resource-group rg-udr-lab --name vm-firewall --query "[0].virtualMachine.network.privateIpAddresses[0]" -o tsv
+az vm list-ip-addresses --resource-group rg-yourname-udr-lab --name vm-firewall --query "[0].virtualMachine.network.privateIpAddresses[0]" -o tsv
 ```
 
 Suppose it returns `10.10.3.4`. Adjust if different.
@@ -134,10 +136,10 @@ Suppose it returns `10.10.3.4`. Adjust if different.
 ### Step 9: Create Route Table and Add UDR
 
 ```bash
-az network route-table create --name rt-udr-demo --resource-group rg-udr-lab --location westus
+az network route-table create --name rt-udr-demo --resource-group rg-yourname-udr-lab --location westus
 
 az network route-table route create \
-  --resource-group rg-udr-lab \
+  --resource-group rg-yourname-udr-lab \
   --route-table-name rt-udr-demo \
   --name route-to-firewall \
   --address-prefix 0.0.0.0/0 \
@@ -151,7 +153,7 @@ az network route-table route create \
 az network vnet subnet update \
   --vnet-name vnet-lab \
   --name subnet-frontend \
-  --resource-group rg-udr-lab \
+  --resource-group rg-yourname-udr-lab \
   --route-table rt-udr-demo
 ```
 
@@ -175,7 +177,7 @@ az network vnet subnet update \
 - Navigate to the `vm-test-1` page
 - Click **Connect** under **Connect**
 - Click on **More Options** then select **Reset passwords or keys**
-- Enter a name for your key pair `e.g. rg-udr-key`
+- Enter a name for your key pair `e.g. rg-yourname-udr-key`
 - Click on **Update** then **Download + create**
 - ![alt text](image.png)
 - Click **Bastion** under the **Connect** menu
@@ -230,7 +232,7 @@ You should see the default Apache index page HTML.
 ## Cleanup
 
 ```bash
-az group delete --name rg-udr-lab --yes --no-wait
+az group delete --name rg-yourname-udr-lab --yes --no-wait
 ```
 
 ---

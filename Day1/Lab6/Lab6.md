@@ -25,8 +25,10 @@ In this hands-on lab, you will:
 
 ### Step 2: Create Resource Group
 
+Replace `yourname` with your name without spaces.
+
 ```bash
-az group create --name rg-fw-lab --location westus
+az group create --name rg-yourname-fw-lab --location westus
 ```
 
 ### Step 3: Create Virtual Network and Subnets
@@ -34,7 +36,7 @@ az group create --name rg-fw-lab --location westus
 ```bash
 az network vnet create \
   --name vnet-fw-demo \
-  --resource-group rg-fw-lab \
+  --resource-group rg-yourname-fw-lab \
   --address-prefix 10.0.0.0/16 \
   --subnet-name AzureFirewallSubnet \
   --subnet-prefix 10.0.1.0/24
@@ -42,7 +44,7 @@ az network vnet create \
 az network vnet subnet create \
   --name workload-subnet \
   --vnet-name vnet-fw-demo \
-  --resource-group rg-fw-lab \
+  --resource-group rg-yourname-fw-lab \
   --address-prefix 10.0.2.0/24
 ```
 
@@ -56,7 +58,7 @@ az network vnet subnet create \
 
 ```bash
 az network public-ip create \
-  --resource-group rg-fw-lab \
+  --resource-group rg-yourname-fw-lab \
   --name fw-public-ip \
   --sku Standard \
   --allocation-method Static \
@@ -68,7 +70,7 @@ az network public-ip create \
 ```bash
 az network firewall create \
   --name az-fw-demo \
-  --resource-group rg-fw-lab \
+  --resource-group rg-yourname-fw-lab \
   --location westus \
   --sku AZFW_VNet \
   --threat-intel-mode Alert
@@ -82,7 +84,7 @@ Answer Y to: `The command requires the extension azure-firewall. Do you want to 
 az network firewall ip-config create \
   --firewall-name az-fw-demo \
   --name fw-config \
-  --resource-group rg-fw-lab \
+  --resource-group rg-yourname-fw-lab \
   --public-ip-address fw-public-ip \
   --vnet-name vnet-fw-demo
 ```
@@ -103,7 +105,7 @@ az network firewall ip-config create \
 ```bash
 az network firewall network-rule create \
   --firewall-name az-fw-demo \
-  --resource-group rg-fw-lab \
+  --resource-group rg-yourname-fw-lab \
   --collection-name net-rule-allow-ssh \
   --name allow-ssh \
   --action Allow \
@@ -124,7 +126,7 @@ az network firewall application-rule create \
   --firewall-name az-fw-demo \
   --name allow-web-outbound \
   --protocols Http=80 Https=443 \
-  --resource-group rg-fw-lab \
+  --resource-group rg-yourname-fw-lab \
   --action Allow \
   --priority 200 \
   --source-addresses '*' \
@@ -142,7 +144,7 @@ az network firewall application-rule create \
 ```bash
 az network route-table create \
   --name rt-fw-routes \
-  --resource-group rg-fw-lab \
+  --resource-group rg-yourname-fw-lab \
   --location westus
 ```
 
@@ -150,7 +152,7 @@ az network route-table create \
 
 ```bash
 az network route-table route create \
-  --resource-group rg-fw-lab \
+  --resource-group rg-yourname-fw-lab \
   --route-table-name rt-fw-routes \
   --name default-to-fw \
   --address-prefix 0.0.0.0/0 \
@@ -166,7 +168,7 @@ az network route-table route create \
 az network vnet subnet update \
   --name workload-subnet \
   --vnet-name vnet-fw-demo \
-  --resource-group rg-fw-lab \
+  --resource-group rg-yourname-fw-lab \
   --route-table rt-fw-routes
 ```
 
@@ -178,7 +180,7 @@ az network vnet subnet update \
 
 ```bash
 az vm create \
-  --resource-group rg-fw-lab \
+  --resource-group rg-yourname-fw-lab \
   --name vm-test-fw \
   --image Ubuntu2204 \
   --admin-username azureuser \
@@ -193,7 +195,7 @@ az vm create \
 - Go to the overview page of `vm-test-fw` and copy the public IP address
 - Click **Connect** under **Connect**
 - Click on **More Options** then select **Reset passwords or keys**
-- Enter a name for your key pair `e.g. rg-fw-key`
+- Enter a name for your key pair `e.g. rg-yourname-fw-key`
 - Click on **Update** then **Download + create**
 - Click **Bastion** under the **Connect** menu
 - Click on **Deploy Bastion**
@@ -216,7 +218,7 @@ curl http://www.microsoft.com
 ## Part 6: Cleanup
 
 ```bash
-az group delete --name rg-fw-lab --yes --no-wait
+az group delete --name rg-yourname-fw-lab --yes --no-wait
 ```
 ---
 
