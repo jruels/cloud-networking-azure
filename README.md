@@ -5,7 +5,7 @@ This repository contains hands-on labs for the Azure Cloud Networking course. Co
 ## Repository Structure
 
 - Labs/  
-  Hands-on labs for Day 1 Module 1:
+ # Hands-on labs for Day 1:
   - [Lab1.md](Day1/Lab1/Lab1.md) – Provision an Azure Virtual Network  
   - [Lab2.md](Day1/Lab2/Lab2.md) – Creating Subnets in an Existing Azure Virtual Network
   - [Lab3.md](Day1/Lab3/Lab3.md) – Implement User-Defined Routes  
@@ -13,7 +13,7 @@ This repository contains hands-on labs for the Azure Cloud Networking course. Co
   - [Lab5.md](Day1/Lab5/Lab5.md) – Configure RBAC for Network Resources  
   - [Lab6.md](Day1/Lab6/Lab6.md) – Deploying Azure Firewall  
 
-  # Hands-on labs for Day 2 Module 2:
+  # Hands-on labs for Day 2:
   - [Lab7.md](Day2/Lab7/Lab7.md) – Creating a Public DNS Zone and Records in Azure DNS  
   - [Lab8.md](Day2/Lab8/Lab8.md) – Setting Up a Private DNS Zone in Azure  
   - [Lab9.md](Day2/Lab9/Lab9.md) – Configuring Azure Traffic Manager for Performance Routing  
