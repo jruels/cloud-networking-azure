@@ -50,7 +50,7 @@ In this exercise, you'll add new subnets to an existing Azure Virtual Network (V
 2. Fill in the subnet details:
 
    * **Name:** `subnet-app-gateway`
-   * **Subnet starting range:** `10.10.3.0/24` (ensure it doesn’t overlap with existing subnets)
+   * **Starting address:** `10.10.3.0/24` (ensure it doesn’t overlap with existing subnets)
 ---
 
 ### **Step 3: Apply Service Delegation**
@@ -61,7 +61,7 @@ In this exercise, you'll add new subnets to an existing Azure Virtual Network (V
    * `Microsoft.Network/applicationGateways` for **Azure Application Gateway**
 3. Once selected, Azure will auto-fill required permissions and APIs. Leave the default settings.
 
-> **Notes:**
+> **Note:**
 > Delegating a subnet allows Azure services to manage IP configurations within it—this is critical for services like Azure Firewall or Azure App Service Environments.
 
 ---
@@ -71,7 +71,7 @@ In this exercise, you'll add new subnets to an existing Azure Virtual Network (V
 1. Leave remaining fields at default (unless otherwise instructed).
 2. Click **Add** at the bottom to create the subnet.
 
-> **Notes:**
+> **Note**
 > Always double-check your address range and delegation settings before saving. The subnet will now appear in the list and be ready for deployment.
 
 ---
@@ -81,7 +81,7 @@ In this exercise, you'll add new subnets to an existing Azure Virtual Network (V
 1. After creation, click the **subnet-app-gateway** name in the list.
 2. Review the subnet detail blade. Note:
 
-   * **Address range:** `10.10.3.0/24`
+   * **Starting address:** `10.10.3.0/24`
    * **Usable IP addresses:** Azure reserves 5 IPs per subnet; the portal will show **251** usable IPs for a /24 block.
 
 > **Notes:**
@@ -89,7 +89,7 @@ In this exercise, you'll add new subnets to an existing Azure Virtual Network (V
 
 ---
 
-### ✅ **Expected Output / Validation**
+### **Expected Output / Validation**
 
 * Subnet `subnet-app-gateway` appears under the VNet
 * Address range is correct
@@ -99,7 +99,7 @@ In this exercise, you'll add new subnets to an existing Azure Virtual Network (V
 ![alt text](image.png)
 ---
 
-### **Cleanup (Optional)**
+### **Cleanup**
 
 
 1. Go to the **Virtual network > Subnets** blade.
