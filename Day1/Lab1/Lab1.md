@@ -66,26 +66,27 @@ In this exercise you will create and configure a Virtual Network in Azure, segme
 4. **Region:** East US.
 5. Navigate to the IP addresses tab:
    ![alt text](image-1.png)
-6. **IPv4 address space:** Click on `Add IPv4 address space` and enter `10.10.0.0/16`.
+6. **IPv4 address space:** In the `Add IPv4 address space`, enter `10.10.0.0/16`.
 
 ---
 
 ### 4. **Add Additional Address Space**
 
-1. Click **AAdd IPv4 address space**, then enter `10.20.0.0/16` to define a second address space.
+1. Click **Add IPv4 address space**, then enter `10.20.0.0/16` to define a second address space.
 
 ---
 
-### 5. **Subnets Configuration**
+### 5. **Subnet Configuration**
 
 1. Click **+ Add a subnet**.
 
    * **Name:** `subnet-frontend`
-   * **IPv4 address range:** `10.10.1.0/24` ![alt text](image-2.png)
+   * **Starting address:** `10.10.1.0/24` ![alt text](image-2.png)
 2. Click **Add**.
 3. Click **+ Add a subnet** again, create a second subnet:
    * **Name:** `subnet-backend`
-   * **IPv4 Address range:** `10.10.2.0/24`!
+   * **IPv4 Address range:** `10.20.0.0/16`
+   * **Starting address:** `10.20.1.0/24` 
    * Your setup should now be similar to the one in the image below: <br/>![alt text](image-3.png)
 4. Click **Next: Tags**.
 
@@ -110,9 +111,10 @@ In this exercise you will create and configure a Virtual Network in Azure, segme
 
 **Inspect the VNet**
 
-   * Browse to **vnet-lab** resource.
-   * Confirm both address spaces (`10.10.0.0/16`, `10.20.0.0/16`) are listed under **Address space**.
-   * Under **Subnets**, verify `subnet-frontend` and `subnet-backend` with correct CIDRs.
+   * Browse to the **vnet-lab** resource.
+   * Expand **Settings**.
+   * under **Address space**, confirm both address spaces (`10.10.0.0/16` and `10.20.0.0/16`) are listed.
+   * Under **Subnets**, verify `subnet-frontend` and `subnet-backend` with the correct CIDRs.
    * ![alt text](image-4.png)
 
 ---
