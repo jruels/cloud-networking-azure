@@ -2,6 +2,8 @@
 
 This repository contains hands-on labs for the Azure Cloud Networking course. Complete the labs in Azure Cloud Shell or the Azure Portal.
 
+[Azure accounts](https://docs.google.com/spreadsheets/d/1cYVlFaznBtFekmgpBA33HIrxLfWBJed-rpVi1WR-u90/edit?usp=sharing)
+
  # Hands-on labs for Day 1:
   - [Lab1.md](Day1/Lab1/Lab1.md) – Provision an Azure Virtual Network  
   - [Lab2.md](Day1/Lab2/Lab2.md) – Creating Subnets in an Existing Azure Virtual Network
