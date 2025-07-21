@@ -102,16 +102,15 @@ You shoud get output similar to the following:
 
 ### Step 6: List Role Assignments for the User
 
-- In the Azure Portal, navigate to the `vnet-rbac-demo` resource
-- Select **Access control (IAM)**
-- Click the **Role assignments tab**
+Run the following command to confirm role assignment: 
+```bash
+az role assignment list \
+  --assignee $TARGET_USER \
+  --scope $(az network vnet show --name vnet-rbac-demo --resource-group rg-jrs-rbac-lab --query id -o tsv) \
+  --output table
+```
 
-You should see the following next to the target user:
 
-* **Role:** Network Contributor
-* **Scope:** The resource ID of the VNet
-
-![alt text](image.png)
 
 ---
 
