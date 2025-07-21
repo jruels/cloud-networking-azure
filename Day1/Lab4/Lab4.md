@@ -27,7 +27,7 @@ In this lab, you will:
 Replace `yourname` with your name without spaces.
 
 ```bash
-az group create --name rg-yourname-nat-lab --location westus
+az group create --name rg-yourname-nat-lab --location eastus
 ```
 
 ### Step 3: Create a VNet and Subnet
@@ -63,7 +63,7 @@ az network nat gateway create \
   --name nat-gateway-demo \
   --public-ip-addresses nat-public-ip \
   --idle-timeout 10 \
-  --location westus
+  --location eastus
 ```
 
 > **Note:** The idle timeout is set to 10 minutes. You can adjust this value if needed.

@@ -28,7 +28,7 @@ In this hands-on lab, you will:
 Replace `yourname` with your name without spaces.
 
 ```bash
-az group create --name rg-yourname-fw-lab --location westus
+az group create --name rg-yourname-fw-lab --location eastus
 ```
 
 ### Step 3: Create Virtual Network and Subnets
@@ -62,7 +62,7 @@ az network public-ip create \
   --name fw-public-ip \
   --sku Standard \
   --allocation-method Static \
-  --location westus
+  --location eastus
 ```
 
 ### Step 5: Deploy the Azure Firewall
@@ -71,7 +71,7 @@ az network public-ip create \
 az network firewall create \
   --name az-fw-demo \
   --resource-group rg-yourname-fw-lab \
-  --location westus \
+  --location eastus \
   --sku AZFW_VNet \
   --threat-intel-mode Alert
 ```
@@ -145,7 +145,7 @@ az network firewall application-rule create \
 az network route-table create \
   --name rt-fw-routes \
   --resource-group rg-yourname-fw-lab \
-  --location westus
+  --location eastus
 ```
 
 ### Step 11: Add Default Route to Firewall

@@ -24,7 +24,7 @@ In this hands-on lab, you will:
 Replace `yourname` with your name without spaces.
 
 ```bash
-az group create --name rg-yourname-rbac-lab --location westus
+az group create --name rg-yourname-rbac-lab --location eastus
 ```
 
 ### Step 3: Create a Virtual Network
