@@ -2,6 +2,8 @@
 
 This repository contains hands-on labs for the Azure Cloud Networking course. Complete the labs in Azure Cloud Shell or the Azure Portal.
 
+First day survey: http://surveymonkey.com/r/ZG89QVN
+
 [Azure accounts](https://docs.google.com/spreadsheets/d/1cYVlFaznBtFekmgpBA33HIrxLfWBJed-rpVi1WR-u90/edit?usp=sharing)
 
  # Hands-on labs for Day 1:
