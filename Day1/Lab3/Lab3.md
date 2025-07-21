@@ -21,13 +21,17 @@ In this hands-on lab, you will:
 
 * Navigate to [https://shell.azure.com](https://shell.azure.com)
 * Choose **Bash**
+* If prompted to create a storage account, choose **Mount storage account**
+* Click **Apply**
+* Choose **We will create a storage account for you**
+* Click **Next**
 
 ### Step 2: Create a Resource Group
 
-Replace `yourname` with your name without spaces.
+In the following steps, replace `yourname` with your initials, without spaces.
 
 ```bash
-az group create --name rg-yourname-udr-lab --location westus
+az group create --name rg-yourname-udr-lab --location eastus
 ```
 
 ### Step 3: Create a Virtual Network with Two Subnets
@@ -39,13 +43,19 @@ az network vnet create \
   --address-prefix 10.10.0.0/16 \
   --subnet-name subnet-frontend \
   --subnet-prefix 10.10.1.0/24
+```
 
+
+
+```bash
 az network vnet subnet create \
   --resource-group rg-yourname-udr-lab \
   --vnet-name vnet-lab \
   --name subnet-firewall \
   --address-prefix 10.10.3.0/24
 ```
+
+
 
 ### Step 4: Create Two Virtual Machines
 
@@ -84,9 +94,14 @@ az vm create \
 ### Step 5: Create NSGs
 
 ```bash
-az network nsg create --resource-group rg-yourname-udr-lab --name nsg-firewall --location westus
-az network nsg create --resource-group rg-yourname-udr-lab --name nsg-test-1 --location westus
+az network nsg create --resource-group rg-yourname-udr-lab --name nsg-firewall --location eastus
 ```
+
+```bash
+az network nsg create --resource-group rg-yourname-udr-lab --name nsg-test-1 --location eastus
+```
+
+
 
 ### Step 6: Attach NSGs to NICs
 
@@ -131,13 +146,15 @@ az network nsg rule create --resource-group rg-yourname-udr-lab --nsg-name nsg-t
 az vm list-ip-addresses --resource-group rg-yourname-udr-lab --name vm-firewall --query "[0].virtualMachine.network.privateIpAddresses[0]" -o tsv
 ```
 
-Suppose it returns `10.10.3.4`. Adjust if different.
+It should return `10.10.3.4`. If not, inform your instructor.
 
 ### Step 9: Create Route Table and Add UDR
 
 ```bash
-az network route-table create --name rt-udr-demo --resource-group rg-yourname-udr-lab --location westus
+az network route-table create --name rt-udr-demo --resource-group rg-yourname-udr-lab --location eastus
+```
 
+``` bash
 az network route-table route create \
   --resource-group rg-yourname-udr-lab \
   --route-table-name rt-udr-demo \
@@ -146,6 +163,10 @@ az network route-table route create \
   --next-hop-type VirtualAppliance \
   --next-hop-ip-address 10.10.3.4
 ```
+
+
+
+
 
 ### Step 10: Associate Route Table with Subnet
 
@@ -210,9 +231,39 @@ PING 10.10.3.4 (10.10.3.4) 56(84) bytes of data.
 64 bytes from 10.10.3.4: icmp_seq=8 ttl=64 time=1.05 ms
 ```
 
+Type `ctl+c` to stop the ping command.
+
+
+
 ### Step 14: Start Web Server on `vm-firewall`
 
-Go to `vm-firewall` and repeat the same steps from `Step 12: SSH into vm-test-1` above to SSH into `vm-firewall` and run:
+Go to `vm-firewall` and repeat the same steps from `Step 12: SSH into vm-test-1` above create a new SSH key and SSH into `vm-firewall` 
+
+**OPTIONAL**: You can also configure `vm-firewall` to use the same SSH key created for `vm-test-1` using the following steps: 
+
+* Use the Cloud Shell to upload the SSH key downloaded in Step 12. 
+
+* Run the following command to extract the public key from the `pem` file:
+
+  ```bash
+  ssh-keygen -y -f rg-yourname-udr-key.pem > rg-yourname-udr-key.pub
+  ```
+
+* Now, inject the public key into the `vm-firewall` VM.
+
+  ```bash
+  az vm user update \
+    --resource-group rg-yourname-udr-lab \
+    --name vm-firewall \
+    --username azureuser \
+    --ssh-key-value rg-yourname-udr-key.pub
+  ```
+
+
+
+In the portal, go to `vm-firewall` -> **Bastion** and follow the same steps to connect using the private key.
+
+After connecting, run (you can't paste): 
 
 ```bash
 sudo apt update && sudo apt install -y apache2
