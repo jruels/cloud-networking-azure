@@ -44,7 +44,7 @@ You will configure Azure CDN to cache static content from Blob Storage, set up c
    ![alt text](image.png)
 6. Click on **Review + create -> Create**
 7. After creation completes, click on **Go to resource**
-8. Click on **Data storage -> Cpntainers** then click **+ Add container** 
+8. Click on **Data storage -> Containers** then click **+ Add container** 
 9. **Name:** images
 10. **Anonymous access level:** Blob
 11. ![alt text](image-1.png)
@@ -65,7 +65,7 @@ Open the **Azure Cloud Shell -> Bash**, and follow the steps below to **create a
 ```bash
 STORAGE_ACCOUNT_NAME="mynamecdnstorage"
 RESOURCE_GROUP="rg-yourname-dns-lab"
-LOCATION="easttus"
+LOCATION="eastus"
 CDN_PROFILE_NAME="yourname-cdn-profile"
 CDN_ENDPOINT_NAME="yourname-cdn-endpoint"
 ORIGIN_HOSTNAME="${STORAGE_ACCOUNT_NAME}.blob.core.windows.net"
@@ -119,7 +119,7 @@ You’ll now have:
 
 **Test CDN Delivery**
 
-   * Access `my-cdn-endpoint.azureedge.net/images/test.jpg`. It should load.
+   * Access `my-cdn-endpoint.azureedge.net/images/test.jpeg`. It should load.
    * Reload multiple times to confirm caching (faster loads).  
 
 ---
