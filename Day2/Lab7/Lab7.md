@@ -35,7 +35,7 @@ In this exercise, you will create a public DNS zone using Azure DNS, add common 
 ### Lab Environment
 
 * **Portal URL:** [https://portal.azure.com](https://portal.azure.com)
-* **Region:** East US (or your nearest region)
+* **Region:** East US 
 * **Resource Group:** `rg-yourname-dns-lab` (create in this lab)
 
 ---
@@ -88,7 +88,7 @@ In this exercise, you will create a public DNS zone using Azure DNS, add common 
 3. **Type:** `CNAME`.
 4. **TTL:** 1 hour.
 5. **Alias:** Enter `www.example.com`.  
-  ![alt text](image-2.png)
+    ![alt text](image-2.png)
 6. Click **Add**.
 
 Your Recordsets will now look like this:
@@ -105,5 +105,4 @@ Your Recordsets will now look like this:
 
 **End of Lab**  
 You’ve now successfully created and managed a public DNS zone in Azure!
-
 

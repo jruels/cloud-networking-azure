@@ -28,7 +28,7 @@ In this exercise, you will set up Azure Traffic Manager to route traffic to endp
 ### Lab Environment
 
 * **Portal URL:** [https://portal.azure.com](https://portal.azure.com)
-* **Regions:** East US and West Europe
+* **Regions:** East US 2 and West Europe
 * **Resource Group:** `rg-yourname-dns-lab`
 
 ---
@@ -38,7 +38,12 @@ In this exercise, you will set up Azure Traffic Manager to route traffic to endp
 ### 1. **Create Sample Endpoints**
 
 1. Search for **App Services**, click **+ Create -> + Web App** twice (once per region).
-2. For each: **Resource group** `rg-yourname-dns-lab`, **Name** `app-yourname-east`/`app-yourname-west`, **Region** East US/West Europe. **Runtime stack** Node 22 LTS, **Linux Plan** Create a new one `app-plan-eastus/app-plan-westus` and use the Free F1 pricing plan
+2. For each: 
+   * **Resource group** `rg-yourname-dns-lab` 
+   * **Name** `app-yourname-east`/`app-yourname-west`
+   * **Region** East US 2/West Europe
+   * **Runtime stack** Node 22 LTS
+   * **Linux Plan** Create a new one `app-plan-eastus/app-plan-westus` and use the Free F1 pricing plan
 3. Deploy basic web apps by clicking **Review + create → Create**. Note URLs (e.g., app-yourname-east-a8c7gxc0gxddbmc4.eastus-01.azurewebsites.net).  
    ![alt text](image.png)
 
@@ -58,7 +63,7 @@ In this exercise, you will set up Azure Traffic Manager to route traffic to endp
 ### 3. **Add Endpoints**
 
 1. Open the profile, click **Settings → Endpoints → + Add**.
-2. **Type:** External endpoint, **Name:** `east-endpoint`, **Target:** `app-yourname-east.azurewebsites.net`, **Location:** East US.
+2. **Type:** External endpoint, **Name:** `east-endpoint`, **Target:** `app-yourname-east.azurewebsites.net`, **Location:** East US 2.
 3. Click **Add**.
 4. Repeat for `west-endpoint` with `app-yourname-west.azurewebsites.net`, Location West Europe.  
    ![alt text](image-2.png)
