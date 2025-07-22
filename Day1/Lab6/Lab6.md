@@ -40,13 +40,17 @@ az network vnet create \
   --address-prefix 10.0.0.0/16 \
   --subnet-name AzureFirewallSubnet \
   --subnet-prefix 10.0.1.0/24
+```
 
+```bash
 az network vnet subnet create \
   --name workload-subnet \
   --vnet-name vnet-fw-demo \
   --resource-group rg-yourname-fw-lab \
   --address-prefix 10.0.2.0/24
 ```
+
+
 
 > **Tip:** The subnet name `AzureFirewallSubnet` is **required** for Azure Firewall to deploy successfully.
 
@@ -77,6 +81,13 @@ az network firewall create \
 ```
 
 Answer Y to: `The command requires the extension azure-firewall. Do you want to install it now? The command will continue to run after the extension is installed. (Y/n): `
+
+The `azure-firewall` extension throws a warning. This isn't an issue, but can cause confusion. If you want to hide Python warnings, run the following: 
+```bash
+export PYTHONWARNINGS="ignore"
+```
+
+
 
 ### Step 6: Configure Firewall IP Configuration
 
